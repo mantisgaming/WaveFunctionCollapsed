@@ -7,6 +7,8 @@ public class RuleExtractor : MonoBehaviour {
     public WFRules rulesFile;
 
     private Tilemap tilemap;
+    [SerializeField]
+    private BaseTile air;
 
     private void Awake() {
         tilemap = GetComponent<Tilemap>();
@@ -15,9 +17,13 @@ public class RuleExtractor : MonoBehaviour {
     private void Start() {
         rulesFile.rules.Clear();
 
+        setAir();
+
         // for each tile
-        for (int k = 0; k < tilemap.size.z; k++) {
-            for (int j = 0; j < tilemap.size.y; j++) {
+        for (int k = 0; k < tilemap.size.z; k++)
+        {
+            for (int j = 0; j < tilemap.size.y; j++)
+            {
                 for (int i = 0; i < tilemap.size.x; i++)
                 {
                     extractRulesFromTile(new Vector3Int(i, j, k));
@@ -26,10 +32,29 @@ public class RuleExtractor : MonoBehaviour {
         }
     }
 
-    private void extractRulesFromTile(Vector3Int tileCoord) {
+    public void setAir()
+    {
+        //iterate through every tile, if it's null, set it to Air
+        for (int z = 0; z < tilemap.size.z; z++)
+        {
+            for (int y = 0; y < tilemap.size.y; y++)
+            {
+                for (int x = 0; x < tilemap.size.x; x++)
+                {
+                    if (tilemap.GetTile(Vector3Int(x, y, z)) == null)
+                    {
+                        tilemap.SetTile(Vector3Int(x, y, z), air);
+                    }
+                }
+            }
+        }
+    }
+
+    private void extractRulesFromTile(Vector3Int tileCoord)
+    {
         TileBase baseTile = tilemap.GetTile(tileCoord);
 
-        if (baseTile == null )
+        if (baseTile == null)
             return;
 
         Rule rule = FindRuleForTile(baseTile);
