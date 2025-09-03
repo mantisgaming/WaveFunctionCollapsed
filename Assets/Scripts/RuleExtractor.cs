@@ -8,7 +8,7 @@ public class RuleExtractor : MonoBehaviour {
 
     private Tilemap tilemap;
     [SerializeField]
-    private BaseTile air;
+    private TileBase air;
 
     private void Awake() {
         tilemap = GetComponent<Tilemap>();
@@ -26,7 +26,7 @@ public class RuleExtractor : MonoBehaviour {
             {
                 for (int i = 0; i < tilemap.size.x; i++)
                 {
-                    extractRulesFromTile(new Vector3Int(i, j, k));
+                    extractRulesFromTile(new Vector3Int(i, j, k) + tilemap.origin);
                 }
             }
         }
@@ -35,15 +35,27 @@ public class RuleExtractor : MonoBehaviour {
     public void setAir()
     {
         //iterate through every tile, if it's null, set it to Air
-        for (int z = 0; z < tilemap.size.z; z++)
+        for (int y = 0; y < tilemap.size.y; y++)
         {
-            for (int y = 0; y < tilemap.size.y; y++)
+            for (int x = 0; x < tilemap.size.x; x++)
             {
-                for (int x = 0; x < tilemap.size.x; x++)
+                bool hasTile = false;
+                for (int z = 0; z < tilemap.size.z; z++)
                 {
-                    if (tilemap.GetTile(Vector3Int(x, y, z)) == null)
+                    if (tilemap.GetTile(new Vector3Int(x, y, z) + tilemap.origin) != null)
                     {
-                        tilemap.SetTile(Vector3Int(x, y, z), air);
+                        hasTile = true; break;
+                    }
+                }
+                if (hasTile)
+                {
+                    for (int z = 0; z < tilemap.size.z; z++)
+                    {
+
+                        if (tilemap.GetTile(new Vector3Int(x, y, z) + tilemap.origin) == null)
+                        {
+                            tilemap.SetTile(new Vector3Int(x, y, z) + tilemap.origin, air);
+                        }
                     }
                 }
             }
