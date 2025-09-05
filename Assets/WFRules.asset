@@ -15,315 +15,625 @@ MonoBehaviour:
   rules:
   - baseTile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
     offsets:
-    - offset: {x: -1, y: -1, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 126
-    - offset: {x: 0, y: -1, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 126
-    - offset: {x: 1, y: -1, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 119
-    - offset: {x: -1, y: 0, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 126
     - offset: {x: 1, y: 0, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 119
-    - offset: {x: -1, y: 1, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 108
+        probability: 90
     - offset: {x: 0, y: 1, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 108
+        probability: 90
     - offset: {x: 1, y: 1, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 102
-    - offset: {x: 0, y: -1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 50
-    - offset: {x: 1, y: -1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 45
-    - offset: {x: 1, y: 0, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 37
-    - offset: {x: 0, y: 1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 36
-    - offset: {x: 1, y: 1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 32
-    - offset: {x: -1, y: -1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 50
+        probability: 81
     - offset: {x: 0, y: 0, z: 1}
       probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 40
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 41
-    - offset: {x: -1, y: 1, z: 1}
+        probability: 60
+    - offset: {x: 1, y: 0, z: 1}
       probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 36
+        probability: 60
+    - offset: {x: 0, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 60
+    - offset: {x: 1, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 60
+    - offset: {x: -1, y: 0, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 90
+    - offset: {x: -1, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 81
     - offset: {x: -1, y: 0, z: 1}
       probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 41
+        probability: 60
+    - offset: {x: -1, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 60
+    - offset: {x: 0, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 90
+    - offset: {x: 1, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 81
+    - offset: {x: 0, y: -1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 60
+    - offset: {x: 1, y: -1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 60
+    - offset: {x: -1, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 81
+    - offset: {x: -1, y: -1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 60
+  - baseTile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+    offsets:
+    - offset: {x: 0, y: 0, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 40
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 40
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: 1, y: 0, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: 0, y: 1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: 1, y: 1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: 1, y: 0, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 81
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 8
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 3
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 6
+    - offset: {x: 0, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 81
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 8
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 7
+    - offset: {x: 1, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 55
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 13
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 1
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 11
+    - offset: {x: 0, y: 0, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 40
+    - offset: {x: 1, y: 0, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+    - offset: {x: 0, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+    - offset: {x: 1, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+    - offset: {x: -1, y: 0, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: -1, y: 1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: -1, y: 0, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 81
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 8
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 7
+    - offset: {x: -1, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 54
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 13
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 1
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 12
+    - offset: {x: -1, y: 0, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+    - offset: {x: -1, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+    - offset: {x: 0, y: -1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: 1, y: -1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: 0, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 81
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 8
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 7
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
+    - offset: {x: 1, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 54
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 13
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 11
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
+    - offset: {x: 0, y: -1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 30
+    - offset: {x: 1, y: -1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+    - offset: {x: -1, y: -1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 38
+    - offset: {x: -1, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 55
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 13
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 11
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 1
+    - offset: {x: -1, y: -1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 21
   - baseTile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
     offsets:
     - offset: {x: -1, y: -1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: 0, y: -1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: 1, y: -1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: -1, y: 0, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: 0, y: 0, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: 1, y: 0, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: -1, y: 1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: 0, y: 1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: 1, y: 1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: 54c74587ca709d645a36d5018e5d03e8, type: 2}
-        probability: 41
+        probability: 60
     - offset: {x: -1, y: -1, z: 0}
       probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 13
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 27
+        probability: 47
     - offset: {x: 0, y: -1, z: 0}
       probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 8
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 33
+        probability: 52
     - offset: {x: 1, y: -1, z: 0}
       probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 13
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 29
+        probability: 47
+    - offset: {x: -1, y: 0, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 8
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 52
     - offset: {x: 1, y: 0, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 32
+        probability: 52
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 8
     - offset: {x: -1, y: 1, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 25
+        probability: 47
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 13
     - offset: {x: 0, y: 1, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 28
+        probability: 52
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 8
     - offset: {x: 1, y: 1, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 23
-    - offset: {x: 0, y: -1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 15
-      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: 1, y: -1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 47
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
         probability: 13
-      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: 1, y: 0, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 14
-      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: 1, y: 1, z: 1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 7
-      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: -1, y: 0, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 32
     - offset: {x: -1, y: -1, z: 1}
       probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 13
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
       - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: 0, y: 0, z: 1}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+    - offset: {x: 0, y: -1, z: 1}
       probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 15
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
       - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: 0, y: 1, z: 1}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+    - offset: {x: 1, y: -1, z: 1}
       probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 9
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
       - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: -1, y: 1, z: 1}
-      probabilities:
+        probability: 4
       - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 9
-      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
+        probability: 18
     - offset: {x: -1, y: 0, z: 1}
       probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 14
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
       - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+    - offset: {x: 0, y: 0, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+    - offset: {x: 1, y: 0, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+    - offset: {x: -1, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+    - offset: {x: 0, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+    - offset: {x: 1, y: 1, z: 1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 4
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 38
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 18
+  - baseTile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+    offsets:
+    - offset: {x: -1, y: -1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: 0, y: -1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: 1, y: -1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: -1, y: 0, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: 0, y: 0, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: 1, y: 0, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: -1, y: 1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: 0, y: 1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: 1, y: 1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 4
+    - offset: {x: -1, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 1
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 3
+    - offset: {x: 0, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 2
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 2
+    - offset: {x: 1, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 1
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 3
+    - offset: {x: -1, y: 0, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 3
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 1
+    - offset: {x: 1, y: 0, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 2
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 2
+    - offset: {x: -1, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 2
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 2
+    - offset: {x: 0, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 2
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 2
+    - offset: {x: 1, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 3
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
         probability: 1
   - baseTile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
     offsets:
     - offset: {x: -1, y: -1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 9
+        probability: 18
     - offset: {x: 0, y: -1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 11
+        probability: 18
     - offset: {x: 1, y: -1, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 11
+        probability: 18
     - offset: {x: -1, y: 0, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 14
+        probability: 18
     - offset: {x: 0, y: 0, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 15
-    - offset: {x: -1, y: 1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 11
-    - offset: {x: 0, y: 1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 12
-    - offset: {x: 1, y: 1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 11
-    - offset: {x: -1, y: -1, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 2
-    - offset: {x: 0, y: -1, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 7
-    - offset: {x: 0, y: 1, z: 0}
-      probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 5
-      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
+        probability: 18
     - offset: {x: 1, y: 0, z: -1}
       probabilities:
       - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 14
-    - offset: {x: -1, y: 1, z: 0}
+        probability: 18
+    - offset: {x: -1, y: 1, z: -1}
       probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 5
-    - offset: {x: 1, y: 1, z: 0}
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 18
+    - offset: {x: 0, y: 1, z: -1}
       probabilities:
-      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 1
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 18
+    - offset: {x: 1, y: 1, z: -1}
+      probabilities:
+      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
+        probability: 18
+    - offset: {x: -1, y: -1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 11
       - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-        probability: 1
-    - offset: {x: 1, y: 0, z: 0}
-      probabilities:
+        probability: 3
       - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 9
-    - offset: {x: -1, y: 0, z: 0}
+        probability: 4
+    - offset: {x: 0, y: -1, z: 0}
       probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 7
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
       - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
         probability: 9
     - offset: {x: 1, y: -1, z: 0}
       probabilities:
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 12
       - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 5
-  - baseTile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
-    offsets:
-    - offset: {x: -1, y: -1, z: -1}
+        probability: 4
+    - offset: {x: -1, y: 0, z: 0}
       probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: 0, y: -1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: 1, y: -1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: -1, y: 0, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: 0, y: 0, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: 1, y: 0, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: -1, y: 1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: 0, y: 1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: 1, y: 1, z: -1}
-      probabilities:
-      - tile: {fileID: 11400000, guid: a2b99e89c7d364f48a0589a69997f657, type: 2}
-        probability: 1
-    - offset: {x: -1, y: -1, z: 0}
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 6
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 10
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
+    - offset: {x: 1, y: 0, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 10
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 7
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
         probability: 1
-    - offset: {x: 0, y: -1, z: 0}
+    - offset: {x: -1, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 11
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 4
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 3
+    - offset: {x: 0, y: 1, z: 0}
       probabilities:
       - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
-        probability: 1
+        probability: 9
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 7
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 2
+    - offset: {x: 1, y: 1, z: 0}
+      probabilities:
+      - tile: {fileID: 11400000, guid: eeca48842e82a944a943f683aa209cca, type: 2}
+        probability: 11
+      - tile: {fileID: 11400000, guid: 4531fefb602259e4880aeb702cc46103, type: 2}
+        probability: 3
+      - tile: {fileID: 11400000, guid: 00e1caf413922c5408fb40c2db076423, type: 2}
+        probability: 4
