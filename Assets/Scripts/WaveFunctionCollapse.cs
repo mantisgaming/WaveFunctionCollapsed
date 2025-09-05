@@ -31,10 +31,26 @@ public class WaveFunctionCollapse : MonoBehaviour {
 
         ResetWaveTable();
         PlaceInitialTile();
+    }
 
-        while (m_remainingTiles > 0) {
-            CollapseTile();
-            m_remainingTiles--;
+    private void FixedUpdate() {
+        for (int i = 0; i < 16; i++) {
+            if (m_remainingTiles > 0) {
+                CollapseTile();
+                m_remainingTiles--;
+            }
+        }
+
+        if (m_remainingTiles == 0) {
+            for (int i = 0; i < size.x; i++) {
+                for (int j = 0; j < size.y; j++) {
+                    for (int k = 0; k < size.z; k++) {
+                        if (tilemap.GetTile(new Vector3Int(i, j, k)) == air) {
+                            tilemap.SetTile(new Vector3Int(i, j, k), null);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -62,14 +78,98 @@ public class WaveFunctionCollapse : MonoBehaviour {
         m_remainingTiles--;
     }
 
-    private void UpdateWavetableFrom(Vector3Int position) {
-        // propagate possible tiles to surrounding tiles
-        // recurse once or twice on changed wave table tiles to avoid deadlocks
+    private void UpdateWavetableFrom(Vector3Int position, int depth = 0) {
+
+        if (depth >= 3) return;
+
+        TileBase tile = tilemap.GetTile(position);
+
+        Rule rule = rulesFile.rules.Find((rule) => rule.baseTile == tile);
+
+        if (rule == null) return;
+
+        for (int i = 0; i < rule.offsets.Count; i++) {
+            RuleOffset offset = rule.offsets[i];
+
+            Vector3Int target = position + offset.offset;
+
+            if (target.x < 0 || target.y < 0 || target.z < 0 ||
+                target.x >= size.x || target.y >= size.y || target.z >= size.z)
+                continue;
+
+            List<TileBase> impossibleTiles = new List<TileBase>();
+
+            ref List<TileBase> targetWaveTableList = ref m_waveTable[target.x, target.y, target.z];
+
+            for (int j = 0; j < targetWaveTableList.Count; j++) {
+                if (!offset.probabilities.Exists((prob) => prob.tile == m_waveTable[target.x, target.y, target.z][j])) {
+                    impossibleTiles.Add(targetWaveTableList[j]);
+                }
+            }
+
+            if (impossibleTiles.Count > 0) {
+                for (int j = 0; j < impossibleTiles.Count; j++) {
+                    targetWaveTableList.Remove(impossibleTiles[j]);
+                }
+
+                UpdateWavetableFrom(target, depth + 1);
+            }
+        }
     }
 
     private void CollapseTile() {
+
         // find a random lowest entropy tile
+        int lowestEntropy = -1;
+        List<Vector3Int> selectedTiles = new List<Vector3Int>();
+
+        for (int i = 0; i < size.x; i++) {
+            for (int j = 0; j < size.y; j++) {
+                for (int k = 0; k < size.z; k++) {
+                    int entropy = m_waveTable[i, j, k].Count;
+                    
+                    if (tilemap.GetTile(new Vector3Int(i,j,k)) != null)
+                        continue;
+
+                    // Ignore tiles that have no possible collapsed state
+                    if (entropy == 0) continue;
+
+                    if (entropy < lowestEntropy || lowestEntropy == -1) {
+                        selectedTiles.Clear();
+
+                        lowestEntropy = entropy;
+                        selectedTiles.Add(new Vector3Int(i, j, k));
+                    } else if (entropy == lowestEntropy) {
+                        selectedTiles.Add(new Vector3Int(i, j, k));
+                    }
+                }
+            }
+        }
+
+        Vector3Int selectedTilePosition = selectedTiles[Random.Range(0, selectedTiles.Count)];
+        List<TileBase> options = m_waveTable[
+            selectedTilePosition.x,
+            selectedTilePosition.y,
+            selectedTilePosition.z
+        ];
+
         // fill the tile based on probability weights
+        // TODO: tile probability
+        TileBase selectedTile = options[Random.Range(0, options.Count)];
+
+        tilemap.SetTile(selectedTilePosition, selectedTile);
+        m_waveTable[
+            selectedTilePosition.x,
+            selectedTilePosition.y,
+            selectedTilePosition.z
+        ].Clear();
+        m_waveTable[
+            selectedTilePosition.x,
+            selectedTilePosition.y,
+            selectedTilePosition.z
+        ].Add(selectedTile);
+
         // update wavetable from the tile
+        UpdateWavetableFrom(selectedTilePosition);
     }
 }
