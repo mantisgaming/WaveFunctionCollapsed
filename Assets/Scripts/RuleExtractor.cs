@@ -15,7 +15,9 @@ public class RuleExtractor : MonoBehaviour {
         tilemap = GetComponent<Tilemap>();
     }
 
-    private void Start() {
+    public void ExtractRules() {
+        tilemap = GetComponent<Tilemap>();
+
         rulesFile.rules.Clear();
 
         setAir();
@@ -28,6 +30,8 @@ public class RuleExtractor : MonoBehaviour {
                 }
             }
         }
+
+        clearAir();
     }
 
     public void setAir()
@@ -47,6 +51,20 @@ public class RuleExtractor : MonoBehaviour {
                         if (tilemap.GetTile(new Vector3Int(x, y, z) + tilemap.origin) == null) {
                             tilemap.SetTile(new Vector3Int(x, y, z) + tilemap.origin, air);
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    public void clearAir() {
+        //iterate through every tile, if it's null, set it to Air
+        for (int y = 0; y < tilemap.size.y; y++) {
+            for (int x = 0; x < tilemap.size.x; x++) {
+                for (int z = 0; z < tilemap.size.z; z++) {
+
+                    if (tilemap.GetTile(new Vector3Int(x, y, z) + tilemap.origin) == air) {
+                        tilemap.SetTile(new Vector3Int(x, y, z) + tilemap.origin, null);
                     }
                 }
             }
