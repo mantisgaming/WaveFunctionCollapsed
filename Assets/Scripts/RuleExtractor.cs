@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 [RequireComponent (typeof(Tilemap))]
