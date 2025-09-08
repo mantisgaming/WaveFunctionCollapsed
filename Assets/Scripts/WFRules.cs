@@ -12,15 +12,15 @@ public class WFRules : ScriptableObject {
 public class Rule {
     public Rule(TileBase baseTile) {
         this.baseTile = baseTile;
-        offsets = new List<RuleOffset>();
+        kernelRules = new List<KernelRule>();
     }
 
     public TileBase baseTile;
-    public List<RuleOffset> offsets;
+    public List<KernelRule> kernelRules;
 }
 
 [Serializable]
-public class RuleOffset
+public class RuleOffset // Not being used
 {
     public RuleOffset(Vector3Int offset)
     {
@@ -33,12 +33,72 @@ public class RuleOffset
 }
 
 [Serializable]
-public class TileProbability {
-    public TileProbability(TileBase tile) {
+public class TileProbability //not being used
+{
+    public TileProbability(TileBase tile)
+    {
         this.tile = tile;
         probability = 0;
     }
 
     public TileBase tile;
     public int probability;
+}
+
+
+[Serializable]
+public class KernelRule
+{
+    public TileBase[,,] kernel;
+    public int count;
+
+    public void setTileAt(Vector3Int pos, TileBase newTile)
+    {
+        kernel[pos.x, pos.y, pos.z] = newTile;
+    }
+
+    public TileBase getTileAt(Vector3Int pos)
+    {
+        return kernel[pos.x, pos.y, pos.z];
+    }
+
+    static public bool operator ==(KernelRule self, KernelRule other)
+    {
+        for (int k = 0; k < 3; k++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Vector3Int index = new Vector3Int(i, j, k);
+                    if (self.getTileAt(index) != other.getTileAt(index)) //Not equals
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+    
+    static public bool operator!=(KernelRule self, KernelRule other) {
+        for (int k = 0; k < 3; k++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Vector3Int index = new Vector3Int(i, j, k);
+                    if (self.getTileAt(index) == other.getTileAt(index)) //equals
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
 }

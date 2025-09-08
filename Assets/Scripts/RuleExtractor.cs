@@ -71,36 +71,44 @@ public class RuleExtractor : MonoBehaviour {
         }
     }
 
-    private void extractRulesFromTile(Vector3Int tileCoord) {
+    private void extractRulesFromTile(Vector3Int tileCoord)
+    {
         TileBase baseTile = tilemap.GetTile(tileCoord);
 
         if (baseTile == null)
             return;
 
-        Rule rule = FindRuleForTile(baseTile);
+        Rule rule = FindRuleForTile(baseTile); //check for existing rule 
+
+        KernelRule foundKernelRule = new KernelRule(); //create blank
+
+        //storing a kernel of this position
 
         // for each surrounding tile
-        for (int k = -1; k <= 1; k++) {
-            for (int j = -1; j <= 1; j++) {
-                for (int i = -1; i <= 1; i++) {
-                    Vector3Int offset = new Vector3Int(i, j, k);
+        for (int k = -1; k <= 1; k++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                for (int i = -1; i <= 1; i++)
+                {
+                    // store positions as vects
+                    Vector3Int offsetVect = new Vector3Int(i, j, k);
+                    Vector3Int kernelVect = new Vector3Int(i + 1, j + 1, k + 1); //to correct to array zero index
 
-                    // ignore self
-                    if (offset == Vector3Int.zero)
-                        continue;
-
-                    TileBase tile = tilemap.GetTile(tileCoord + offset);
-
-                    if (tile == null)
-                        continue;
-
-                    RuleOffset ruleOffset = FindOffsetForRule(rule, offset);
-                    TileProbability tileProbability = FindTileProbabilityForTileOffset(ref ruleOffset, tile);
-
-                    tileProbability.probability++;
+                    //find tile at position, store in kernelRule
+                    foundKernelRule.setTileAt(kernelVect, tilemap.GetTile(tileCoord + offsetVect));
                 }
             }
         }
+        //test if the kernel made is the same as another already in the list
+        foreach (rule) { }
+
+
+        //if so ignore
+
+        //else add to list
+
+
     }
 
     private TileProbability FindTileProbabilityForTileOffset(ref RuleOffset ruleOffset, TileBase tile) {
