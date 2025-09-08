@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using Unity.Collections;
+using Unity.VisualScripting;
 
-[RequireComponent (typeof(Tilemap))]
+[RequireComponent(typeof(Tilemap))]
 public class RuleExtractor : MonoBehaviour {
     public WFRules rulesFile;
 
@@ -15,7 +17,8 @@ public class RuleExtractor : MonoBehaviour {
         tilemap = GetComponent<Tilemap>();
     }
 
-    public void ExtractRules() {
+    public void ExtractRules()
+    {
         tilemap = GetComponent<Tilemap>();
 
         rulesFile.rules.Clear();
@@ -23,15 +26,21 @@ public class RuleExtractor : MonoBehaviour {
         setAir();
 
         // for each tile
-        for (int k = 0; k < tilemap.size.z; k++) {
-            for (int j = 0; j < tilemap.size.y; j++) {
-                for (int i = 0; i < tilemap.size.x; i++) {
+        for (int k = 1; k < tilemap.size.z; k++) //start at z=1 TODO
+        {
+            for (int j = 0; j < tilemap.size.y; j++)
+            {
+                for (int i = 0; i < tilemap.size.x; i++)
+                {
+                    Debug.Log("ReachedTile[" + i + ", " + j + ", " + k + "]");
                     extractRulesFromTile(new Vector3Int(i, j, k) + tilemap.origin);
                 }
             }
         }
 
         clearAir();
+
+        Debug.Log("Finished extractRules");
     }
 
     public void setAir()
@@ -79,11 +88,18 @@ public class RuleExtractor : MonoBehaviour {
             return;
 
         Rule rule = FindRuleForTile(baseTile); //check for existing rule 
+                                               //if I don't have a rule make a rule
+        if (rule == null)
+        {
+            rule = new Rule(baseTile);
+            rulesFile.rules.Add(rule);
+        }
 
         KernelRule foundKernelRule = new KernelRule(); //create blank
 
         //storing a kernel of this position
 
+        bool isValidKernel = true;
         // for each surrounding tile
         for (int k = -1; k <= 1; k++)
         {
@@ -91,51 +107,83 @@ public class RuleExtractor : MonoBehaviour {
             {
                 for (int i = -1; i <= 1; i++)
                 {
+                    
+
                     // store positions as vects
                     Vector3Int offsetVect = new Vector3Int(i, j, k);
                     Vector3Int kernelVect = new Vector3Int(i + 1, j + 1, k + 1); //to correct to array zero index
 
+
                     //find tile at position, store in kernelRule
-                    foundKernelRule.setTileAt(kernelVect, tilemap.GetTile(tileCoord + offsetVect));
+                    TileBase tileAtLoc = tilemap.GetTile(tileCoord + offsetVect);
+                    Debug.Log(tileAtLoc);
+                    if (tileAtLoc == null)
+                    {
+                        return; //contains null, discard the kernel rule its on an edge.
+                    }
+
+                    foundKernelRule.setTileAt(kernelVect, tileAtLoc);
                 }
             }
         }
+
+
+        Debug.Log("Kernel made" +foundKernelRule.kernel);
+
         //test if the kernel made is the same as another already in the list
-        foreach (rule) { }
+        bool ruleExists = false;
+        foreach (KernelRule currKernel in rule.kernelRules)
+        {
+            //if it equals we have found a match
+            if (currKernel == foundKernelRule)
+            {
+                ruleExists = true;
+                //increase count
+                currKernel.count++;
+                return; //exist
+            }
+        }
 
-
-        //if so ignore
-
-        //else add to list
-
+        //if rule doesn't exist yet add to the list
+        if (!ruleExists)
+        {
+            foundKernelRule.count = 1;
+            rule.kernelRules.Add(foundKernelRule);
+        }
 
     }
 
-    private TileProbability FindTileProbabilityForTileOffset(ref RuleOffset ruleOffset, TileBase tile) {
+    /*
+    private TileProbability FindTileProbabilityForTileOffset(ref RuleOffset ruleOffset, TileBase tile)
+    {
         TileProbability tileProbability = ruleOffset.probabilities.Find(
             (prob) => prob.tile == tile
         );
 
-        if (tileProbability == null) {
+        if (tileProbability == null)
+        {
             tileProbability = new TileProbability(tile);
             ruleOffset.probabilities.Add(tileProbability);
         }
 
         return tileProbability;
-    }
+    }*/
 
-    private RuleOffset FindOffsetForRule(Rule rule, Vector3Int offset) {
+    /*
+    private RuleOffset FindOffsetForRule(Rule rule, Vector3Int offset)
+    {
         RuleOffset ruleOffset = rule.offsets.Find(
             (o) => o.offset == offset
         );
 
-        if (ruleOffset == null) {
+        if (ruleOffset == null)
+        {
             ruleOffset = new RuleOffset(offset);
             rule.offsets.Add(ruleOffset);
         }
 
         return ruleOffset;
-    }
+    }*/
 
     private Rule FindRuleForTile(TileBase baseTile) {
         Rule rule = rulesFile.rules.Find(
@@ -149,4 +197,5 @@ public class RuleExtractor : MonoBehaviour {
 
         return rule;
     }
+    
 }

@@ -49,17 +49,31 @@ public class TileProbability //not being used
 [Serializable]
 public class KernelRule
 {
-    public TileBase[,,] kernel;
+    public TileBase[] kernel;
     public int count;
+
+    public KernelRule()
+    {
+        kernel = new TileBase[27];
+    }
+
+    /*pos must have each element between 0 and 2*/
+    private int vectorToIndex(Vector3Int pos)
+    {
+
+        return (9 * (pos.x)) + (3 * (pos.y)) + pos.z;
+    }
 
     public void setTileAt(Vector3Int pos, TileBase newTile)
     {
-        kernel[pos.x, pos.y, pos.z] = newTile;
+        Debug.Log(pos + ", " + newTile);
+
+        kernel[vectorToIndex(pos)] = newTile;
     }
 
     public TileBase getTileAt(Vector3Int pos)
     {
-        return kernel[pos.x, pos.y, pos.z];
+        return kernel[vectorToIndex(pos)];
     }
 
     static public bool operator ==(KernelRule self, KernelRule other)
