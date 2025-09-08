@@ -76,35 +76,21 @@ public class KernelRule
         return kernel[vectorToIndex(pos)];
     }
 
-    static public bool operator ==(KernelRule self, KernelRule other)
-    {
-        for (int k = 0; k < 3; k++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    Vector3Int index = new Vector3Int(i, j, k);
-                    if (self.getTileAt(index) != other.getTileAt(index)) //Not equals
-                    {
-                        return false;
-                    }
-                }
-            }
-        }
+    public override bool Equals(object obj) {
 
-        return true;
-    }
-    
-    static public bool operator!=(KernelRule self, KernelRule other) {
-        for (int k = 0; k < 3; k++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int i = 0; i < 3; i++)
-                {
+        if (obj == null)
+            return false;
+
+        if (!(obj is KernelRule))
+            return false;
+
+        KernelRule other = (KernelRule)obj;
+
+        for (int k = 0; k < 3; k++) {
+            for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 3; i++) {
                     Vector3Int index = new Vector3Int(i, j, k);
-                    if (self.getTileAt(index) == other.getTileAt(index)) //equals
+                    if (getTileAt(index) != other.getTileAt(index)) //Not equals
                     {
                         return false;
                     }
@@ -115,4 +101,7 @@ public class KernelRule
         return true;
     }
 
+    public override int GetHashCode() {
+        return kernel.GetHashCode();
+    }
 }

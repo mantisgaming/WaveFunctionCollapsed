@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.WSA;
 
 [RequireComponent(typeof(Tilemap))]
 public class WaveFunctionCollapse : MonoBehaviour {
@@ -80,40 +79,87 @@ public class WaveFunctionCollapse : MonoBehaviour {
     }
 
     private void UpdateWavetableFrom(Vector3Int position, int depth = 0) {
-
         if (depth >= 3) return;
 
-        TileBase tile = tilemap.GetTile(position);
+        if (position.x > 0 && position.x < size.x - 1 &&
+            position.y > 0 && position.y < size.y - 1 &&
+            position.z > 0 && position.z < size.z - 1) {
 
-        Rule rule = rulesFile.rules.Find((rule) => rule.baseTile == tile);
-
-        if (rule == null) return;
-
-        for (int i = 0; i < rule.offsets.Count; i++) {
-            RuleOffset offset = rule.offsets[i];
-
-            Vector3Int target = position + offset.offset;
-
-            if (target.x < 0 || target.y < 0 || target.z < 0 ||
-                target.x >= size.x || target.y >= size.y || target.z >= size.z)
-                continue;
-
-            List<TileBase> impossibleTiles = new List<TileBase>();
-
-            ref List<TileBase> targetWaveTableList = ref m_waveTable[target.x, target.y, target.z];
-
-            for (int j = 0; j < targetWaveTableList.Count; j++) {
-                if (!offset.probabilities.Exists((prob) => prob.tile == m_waveTable[target.x, target.y, target.z][j])) {
-                    impossibleTiles.Add(targetWaveTableList[j]);
+            List<TileBase>[,,] validTiles = new List<TileBase>[3, 3, 3];
+            
+            foreach (Rule rule in rulesFile.rules) {
+                foreach (KernelRule kernel in rule.kernelRules) {
+                    if (DoesRuleFit(kernel, position)) {
+                        UnionKernel(kernel, ref validTiles);
+                    }
                 }
             }
 
-            if (impossibleTiles.Count > 0) {
-                for (int j = 0; j < impossibleTiles.Count; j++) {
-                    targetWaveTableList.Remove(impossibleTiles[j]);
-                }
+            for (int k = -1; k <= 1; k++) {
+                for (int j = -1; j <= 1; j++) {
+                    for (int i = -1; i <= 1; i++) {
+                        Vector3Int offset = new(i, j, k);
+                        Vector3Int target = offset + position;
 
-                UpdateWavetableFrom(target, depth + 1);
+                        List<TileBase> impossibleTiles = new List<TileBase>();
+                        foreach (TileBase tile in m_waveTable[target.x, target.y, target.z]) {
+                            if (!validTiles[i,j,k].Contains(tile))
+                                impossibleTiles.Add(tile);
+                        }
+
+                        foreach (TileBase tile in impossibleTiles) {
+                            m_waveTable[target.x, target.y, target.z].Remove(tile);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int k = -1; k <= 1; k++) {
+            for (int j = -1; j <= 1; j++) {
+                for (int i = -1; i <= 1; i++) {
+                    Vector3Int offset = new(i, j, k);
+                    Vector3Int target = offset + position;
+
+                    if (target.x < 0 || target.y < 0 || target.z < 0 ||
+                        target.x >= size.x || target.y >= size.y || target.z >= size.z)
+                        continue;
+
+                    UpdateWavetableFrom(target, depth + 1);
+                }
+            }
+        }
+    }
+
+    private bool DoesRuleFit(KernelRule kernel, Vector3Int position) {
+        for (int k = -1; k <= 1; k++) {
+            for (int j = -1; j <= 1; j++) {
+                for (int i = -1; i <= 1; i++) {
+                    Vector3Int offset = new(i, j, k);
+                    Vector3Int target = offset + position;
+
+                    TileBase ruleTile = kernel.getTileAt(offset + Vector3Int.one);
+                    if (!m_waveTable[target.x, target.y, target.z].Contains(ruleTile))
+                        return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private void UnionKernel(KernelRule kernel, ref List<TileBase>[,,] tiles) {
+        for (int k = 0; k < 1; k++) {
+            for (int j = 0; j < 1; j++) {
+                for (int i = 0; i < 1; i++) {
+                    if (tiles[i,j,k] == null)
+                        tiles[i,j,k] = new List<TileBase>();
+
+                    TileBase kernelTile = kernel.getTileAt(new Vector3Int(i, j, k));
+
+                    if (!tiles[i, j, k].Contains(kernelTile))
+                        tiles[i, j, k].Add(kernelTile);
+                }
             }
         }
     }
@@ -154,65 +200,7 @@ public class WaveFunctionCollapse : MonoBehaviour {
             selectedTilePosition.z
         ];
 
-        List<int> probabilities = new List<int>();
-
-        for (int i = 0; i < options.Count; i++) {
-            probabilities.Add(0);
-        }
-
-        // fill the tile based on probability weights
-        for (int k = -1; k <= 1; k++) {
-            for (int j = -1; j <= 1; j++) {
-                for (int i = -1; i <= 1; i++) {
-                    Vector3Int offset = new Vector3Int(i, j, k);
-
-                    // ignore self
-                    if (offset == Vector3Int.zero)
-                        continue;
-
-                    TileBase offsetTile = tilemap.GetTile(offset + selectedTilePosition);
-
-                    if (offsetTile == null)
-                        continue;
-
-                    Rule rule = rulesFile.rules.Find((rule) => rule.baseTile == offsetTile);
-
-                    RuleOffset ruleOffset = rule.offsets.Find((target) => target.offset == -offset);
-                    
-                    if (ruleOffset == null)
-                        continue;
-
-                    for (int optionIndex = 0; optionIndex < options.Count; optionIndex++) {
-                        TileProbability prob = ruleOffset.probabilities.Find((tile) => tile.tile == options[optionIndex]);
-                        
-                        if (prob == null)
-                            continue;
-
-                        probabilities[optionIndex] += prob.probability;
-                    }
-                }
-            }
-        }
-
-        int sum = 0;
-        for (int i = 0; i < probabilities.Count; i++) {
-            sum += probabilities[i];
-        }
-
-        TileBase selectedTile = null;
-
-        int finalIndex = Random.Range(0, sum);
-        for (int i = 0; i < probabilities.Count; i++) {
-            if (finalIndex <= probabilities[i]) {
-                selectedTile = options[i];
-                break;
-            } else
-                finalIndex -= probabilities[i];
-        }
-
-        if (selectedTile == null) {
-            throw new System.Exception("REEEEEE");
-        }
+        TileBase selectedTile = options[Random.Range(0, options.Count)];
 
         tilemap.SetTile(selectedTilePosition, selectedTile);
         m_waveTable[
