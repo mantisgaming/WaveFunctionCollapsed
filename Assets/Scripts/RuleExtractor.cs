@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Unity.Collections;
-using Unity.VisualScripting;
 
 [RequireComponent(typeof(Tilemap))]
 public class RuleExtractor : MonoBehaviour {
@@ -25,7 +23,7 @@ public class RuleExtractor : MonoBehaviour {
         setAir();
 
         // for each tile
-        for (int k = 1; k < tilemap.size.z; k++) //start at z=1 TODO
+        for (int k = 0; k < tilemap.size.z; k++)
         {
             for (int j = 0; j < tilemap.size.y; j++)
             {

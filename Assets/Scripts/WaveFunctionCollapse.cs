@@ -86,6 +86,14 @@ public class WaveFunctionCollapse : MonoBehaviour {
             position.z > 0 && position.z < size.z - 1) {
 
             List<TileBase>[,,] validTiles = new List<TileBase>[3, 3, 3];
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    for (int k = 0; k < 3; k++) {
+                        validTiles[i, j, k] = new List<TileBase>();
+                    }
+                }
+            }
             
             foreach (Rule rule in rulesFile.rules) {
                 foreach (KernelRule kernel in rule.kernelRules) {
@@ -103,7 +111,7 @@ public class WaveFunctionCollapse : MonoBehaviour {
 
                         List<TileBase> impossibleTiles = new List<TileBase>();
                         foreach (TileBase tile in m_waveTable[target.x, target.y, target.z]) {
-                            if (!validTiles[i,j,k].Contains(tile))
+                            if (!validTiles[i+1,j+1,k+1].Contains(tile))
                                 impossibleTiles.Add(tile);
                         }
 
@@ -124,6 +132,8 @@ public class WaveFunctionCollapse : MonoBehaviour {
                     if (target.x < 0 || target.y < 0 || target.z < 0 ||
                         target.x >= size.x || target.y >= size.y || target.z >= size.z)
                         continue;
+
+                    if (offset == Vector3Int.zero) continue;
 
                     UpdateWavetableFrom(target, depth + 1);
                 }
