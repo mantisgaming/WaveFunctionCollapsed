@@ -188,7 +188,19 @@ public class WaveFunctionCollapse : MonoBehaviour {
                         if (prob == null)
                             continue;
 
-                        probabilities[optionIndex] += prob.probability;
+                        if (options[optionIndex].name == "Air" && selectedTilePosition.z == 2)
+                        {
+                            probabilities[optionIndex] += Mathf.FloorToInt(prob.probability * 0.35f);
+                        }
+                        else if (k == 0)
+                        {
+                            probabilities[optionIndex] += prob.probability * 3;
+                        }
+
+                        else
+                        {
+                            probabilities[optionIndex] += prob.probability;
+                        }
                     }
                 }
             }
