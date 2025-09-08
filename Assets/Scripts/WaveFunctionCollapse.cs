@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.WSA;
 
 [RequireComponent(typeof(Tilemap))]
 public class WaveFunctionCollapse : MonoBehaviour {
@@ -153,9 +154,65 @@ public class WaveFunctionCollapse : MonoBehaviour {
             selectedTilePosition.z
         ];
 
+        List<int> probabilities = new List<int>();
+
+        for (int i = 0; i < options.Count; i++) {
+            probabilities.Add(0);
+        }
+
         // fill the tile based on probability weights
-        // TODO: tile probability
-        TileBase selectedTile = options[Random.Range(0, options.Count)];
+        for (int k = -1; k <= 1; k++) {
+            for (int j = -1; j <= 1; j++) {
+                for (int i = -1; i <= 1; i++) {
+                    Vector3Int offset = new Vector3Int(i, j, k);
+
+                    // ignore self
+                    if (offset == Vector3Int.zero)
+                        continue;
+
+                    TileBase offsetTile = tilemap.GetTile(offset + selectedTilePosition);
+
+                    if (offsetTile == null)
+                        continue;
+
+                    Rule rule = rulesFile.rules.Find((rule) => rule.baseTile == offsetTile);
+
+                    RuleOffset ruleOffset = rule.offsets.Find((target) => target.offset == -offset);
+                    
+                    if (ruleOffset == null)
+                        continue;
+
+                    for (int optionIndex = 0; optionIndex < options.Count; optionIndex++) {
+                        TileProbability prob = ruleOffset.probabilities.Find((tile) => tile.tile == options[optionIndex]);
+                        
+                        if (prob == null)
+                            continue;
+
+                        probabilities[optionIndex] += prob.probability;
+                    }
+                }
+            }
+        }
+
+        int sum = 0;
+        for (int i = 0; i < probabilities.Count; i++) {
+            sum += probabilities[i];
+        }
+
+        TileBase selectedTile = null;
+
+        int finalIndex = Random.Range(0, sum);
+        for (int i = 0; i < probabilities.Count; i++) {
+            if (finalIndex <= probabilities[i]) {
+                selectedTile = options[i];
+                break;
+            } else
+                finalIndex -= probabilities[i];
+        }
+
+        if (selectedTile == null) {
+            throw new System.Exception("REEEEEE");
+        }
 
         tilemap.SetTile(selectedTilePosition, selectedTile);
         m_waveTable[
