@@ -79,7 +79,7 @@ public class WaveFunctionCollapse : MonoBehaviour {
     }
 
     private void UpdateWavetableFrom(Vector3Int position, int depth = 0) {
-        if (depth >= 3) return;
+        if (depth >= 2) return;
 
         if (position.x > 0 && position.x < size.x - 1 &&
             position.y > 0 && position.y < size.y - 1 &&
@@ -159,12 +159,9 @@ public class WaveFunctionCollapse : MonoBehaviour {
     }
 
     private void UnionKernel(KernelRule kernel, ref List<TileBase>[,,] tiles) {
-        for (int k = 0; k < 1; k++) {
-            for (int j = 0; j < 1; j++) {
-                for (int i = 0; i < 1; i++) {
-                    if (tiles[i,j,k] == null)
-                        tiles[i,j,k] = new List<TileBase>();
-
+        for (int k = 0; k < 3; k++) {
+            for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 3; i++) {
                     TileBase kernelTile = kernel.getTileAt(new Vector3Int(i, j, k));
 
                     if (!tiles[i, j, k].Contains(kernelTile))
@@ -202,6 +199,11 @@ public class WaveFunctionCollapse : MonoBehaviour {
                 }
             }
         }
+
+        Debug.Log($"Lowest Entropy: {lowestEntropy}");
+
+        if (lowestEntropy == -1)
+            return;
 
         Vector3Int selectedTilePosition = selectedTiles[Random.Range(0, selectedTiles.Count)];
         List<TileBase> options = m_waveTable[
