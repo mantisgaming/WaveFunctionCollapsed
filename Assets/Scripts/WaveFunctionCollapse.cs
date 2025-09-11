@@ -124,27 +124,41 @@ public class WaveFunctionCollapse : MonoBehaviour {
         int lowestEntropy = -1;
         List<Vector3Int> selectedTiles = new List<Vector3Int>();
 
-        for (int i = 0; i < size.x; i++) {
-            for (int j = 0; j < size.y; j++) {
-                for (int k = 0; k < size.z; k++) {
+        
+
+        for (int i = 0; i < size.x; i++)
+        {
+            for (int j = 0; j < size.y; j++)
+            {
+                for (int k = 0; k < size.z; k++)
+                {
                     int entropy = m_waveTable[i, j, k].Count;
-                    
-                    if (tilemap.GetTile(new Vector3Int(i,j,k)) != null)
+
+                    if (tilemap.GetTile(new Vector3Int(i, j, k)) != null)
                         continue;
 
                     // Ignore tiles that have no possible collapsed state
                     if (entropy == 0) continue;
 
-                    if (entropy < lowestEntropy || lowestEntropy == -1) {
+                    if (entropy < lowestEntropy || lowestEntropy == -1)
+                    {
                         selectedTiles.Clear();
 
                         lowestEntropy = entropy;
                         selectedTiles.Add(new Vector3Int(i, j, k));
-                    } else if (entropy == lowestEntropy) {
+                    }
+                    else if (entropy == lowestEntropy)
+                    {
                         selectedTiles.Add(new Vector3Int(i, j, k));
                     }
                 }
             }
+        }
+
+        if (selectedTiles.Count == 0)
+        {
+            m_remainingTiles = 0;
+            return;
         }
 
         Vector3Int selectedTilePosition = selectedTiles[Random.Range(0, selectedTiles.Count)];

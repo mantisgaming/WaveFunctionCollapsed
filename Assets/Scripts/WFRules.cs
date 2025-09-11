@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "WFRules", menuName = "Scriptable Objects/WFRules")]
 public class WFRules : ScriptableObject {
-    public List<Rule> rules;
+    public List<Rule> rules = new List<Rule>();
 }
 
 [Serializable]
