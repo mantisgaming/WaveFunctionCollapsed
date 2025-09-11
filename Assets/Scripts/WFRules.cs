@@ -8,11 +8,11 @@ public class WFRules : ScriptableObject {
     public List<KernelRule> rules;
     public List<TileBase> tiles;
 
-    private Vector3Int m_maxKernelSize = -Vector3Int.one;
+    private Vector3Int m_maxKernelSize;
 
     public Vector3Int MaxKernelSize {
         get {
-            if (m_maxKernelSize != -Vector3Int.one)
+            if (m_maxKernelSize != Vector3Int.zero)
                 return m_maxKernelSize;
 
             foreach (var rule in rules) {
@@ -40,7 +40,7 @@ public class KernelRule
 {
     public TileBase[] kernel;
     public int count = 1;
-    public Vector3Int Size { get; private set; }
+    public Vector3Int Size;
 
     public KernelRule(Vector3Int size) {
         Size = size;

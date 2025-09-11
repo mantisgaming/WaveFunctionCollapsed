@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Tilemap))]
 public class WaveFunctionCollapse : MonoBehaviour {
@@ -75,11 +77,15 @@ public class WaveFunctionCollapse : MonoBehaviour {
 
         var kSize = rulesFile.MaxKernelSize;
 
-        for (int i = 0; i < kSize.x; i++) {
-            for (int j = 0; j < kSize.y; j++) {
-                for (int k = 0; k < kSize.z; k++) {
+        UpdateWavetableAt(pos);
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                for (int k = -1; k <= 1; k++) {
                     Vector3Int offset = new(i, j, k);
-                    UpdateWavetableFrom(pos - offset);
+                    if (offset == Vector3Int.zero)
+                        continue;
+                    UpdateWavetableAt(pos + offset);
                 }
             }
         }
@@ -88,58 +94,50 @@ public class WaveFunctionCollapse : MonoBehaviour {
             for (int j = -kSize.y + 1; j < kSize.y; j++) {
                 for (int k = -kSize.z + 1; k < kSize.z; k++) {
                     Vector3Int offset = new(i, j, k);
+                    if (offset == Vector3Int.zero)
+                        continue;
                     UpdateWavetableAround(pos + offset, depth + 1);
                 }
             }
         }
     }
 
-    private void UpdateWavetableFrom(Vector3Int position) {
-        if (position.x < size.x &&
-            position.y < size.y &&
-            position.z < size.z) {
+    private void UpdateWavetableAt(Vector3Int position) {
+        if (position.x < size.x && position.x >= 0 &&
+            position.y < size.y && position.y >= 0 &&
+            position.z < size.z && position.z >= 0) {
 
             var kSize = rulesFile.MaxKernelSize;
 
-            List<TileBase>[,,] validTiles = new List<TileBase>[kSize.x, kSize.y, kSize.z];
+            List<TileBase> validTiles = new List<TileBase>(rulesFile.tiles);
 
             for (int i = 0; i < kSize.x; i++) {
                 for (int j = 0; j < kSize.y; j++) {
                     for (int k = 0; k < kSize.z; k++) {
-                        validTiles[i, j, k] = new List<TileBase>();
-                    }
-                }
-            }
-
-            foreach (KernelRule rule in rulesFile.rules) {
-                if (DoesRuleFit(rule, position)) {
-                    UnionKernel(rule, ref validTiles);
-                }
-            }
-
-            for (int k = 0; k < kSize.z; k++) {
-                for (int j = 0; j < kSize.y; j++) {
-                    for (int i = 0; i < kSize.x; i++) {
                         Vector3Int offset = new(i, j, k);
-                        Vector3Int target = offset + position;
-
-                        if (target.x < 0 || target.x >= size.x ||
-                            target.y < 0 || target.y >= size.y ||
-                            target.z < 0 || target.z >= size.z)
-                            continue;
+                        List<TileBase> ruleTiles = new List<TileBase>();
+                        foreach (KernelRule rule in rulesFile.rules) {
+                            if (DoesRuleFit(rule, position - offset)) {
+                                TileBase tile = rule.getTileAt(offset);
+                                if (!ruleTiles.Contains(tile))
+                                    ruleTiles.Add(tile);
+                            }
+                        }
 
                         List<TileBase> impossibleTiles = new List<TileBase>();
-                        foreach (TileBase tile in m_waveTable[target.x, target.y, target.z]) {
-                            if (!validTiles[i,j,k].Contains(tile))
+                        foreach (TileBase tile in validTiles) {
+                            if (!ruleTiles.Contains(tile))
                                 impossibleTiles.Add(tile);
                         }
 
                         foreach (TileBase tile in impossibleTiles) {
-                            m_waveTable[target.x, target.y, target.z].Remove(tile);
+                            ruleTiles.Remove(tile);
                         }
                     }
                 }
             }
+
+            m_waveTable[position.x, position.y, position.z] = validTiles;
         }
     }
 
