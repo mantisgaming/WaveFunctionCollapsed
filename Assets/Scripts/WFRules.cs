@@ -5,78 +5,59 @@ using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "WFRules", menuName = "Scriptable Objects/WFRules")]
 public class WFRules : ScriptableObject {
-    public List<Rule> rules;
+    public List<KernelRule> rules;
+    public List<TileBase> tiles;
+
+    private Vector3Int m_maxKernelSize = -Vector3Int.one;
+
+    public Vector3Int MaxKernelSize {
+        get {
+            if (m_maxKernelSize != -Vector3Int.one)
+                return m_maxKernelSize;
+
+            foreach (var rule in rules) {
+                if (m_maxKernelSize.x < rule.Size.x)
+                    m_maxKernelSize.x = rule.Size.x;
+
+                if (m_maxKernelSize.y < rule.Size.y)
+                    m_maxKernelSize.y = rule.Size.y;
+
+                if (m_maxKernelSize.z < rule.Size.z)
+                    m_maxKernelSize.z = rule.Size.z;
+            }
+
+            return m_maxKernelSize;
+        }
+    }
 
     public WFRules() {
-        rules = new List<Rule>();
+        rules = new List<KernelRule>();
     }
 }
-
-[Serializable]
-public class Rule {
-    public Rule(TileBase baseTile) {
-        this.baseTile = baseTile;
-        kernelRules = new List<KernelRule>();
-    }
-
-    public TileBase baseTile;
-    public List<KernelRule> kernelRules;
-}
-
-[Serializable]
-public class RuleOffset // Not being used
-{
-    public RuleOffset(Vector3Int offset)
-    {
-        this.offset = offset;
-        probabilities = new List<TileProbability>();
-    }
-
-    public Vector3Int offset;
-    public List<TileProbability> probabilities;
-}
-
-[Serializable]
-public class TileProbability //not being used
-{
-    public TileProbability(TileBase tile)
-    {
-        this.tile = tile;
-        probability = 0;
-    }
-
-    public TileBase tile;
-    public int probability;
-}
-
 
 [Serializable]
 public class KernelRule
 {
     public TileBase[] kernel;
-    public int count;
+    public int count = 1;
+    public Vector3Int Size { get; private set; }
 
-    public KernelRule()
-    {
-        kernel = new TileBase[27];
+    public KernelRule(Vector3Int size) {
+        Size = size;
+        kernel = new TileBase[size.x * size.y * size.z];
     }
 
-    /*pos must have each element between 0 and 2*/
-    private int vectorToIndex(Vector3Int pos)
-    {
-
-        return (9 * (pos.x)) + (3 * (pos.y)) + pos.z;
+    private int vectorToIndex(Vector3Int pos) {
+        return pos.x + pos.y * Size.x + pos.z * Size.x * Size.y;
     }
 
-    public void setTileAt(Vector3Int pos, TileBase newTile)
-    {
+    public void setTileAt(Vector3Int pos, TileBase newTile) {
         Debug.Log(pos + ", " + newTile);
 
         kernel[vectorToIndex(pos)] = newTile;
     }
 
-    public TileBase getTileAt(Vector3Int pos)
-    {
+    public TileBase getTileAt(Vector3Int pos) {
         return kernel[vectorToIndex(pos)];
     }
 
@@ -90,16 +71,11 @@ public class KernelRule
 
         KernelRule other = (KernelRule)obj;
 
-        for (int k = 0; k < 3; k++) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 3; i++) {
-                    Vector3Int index = new Vector3Int(i, j, k);
-                    if (getTileAt(index) != other.getTileAt(index)) //Not equals
-                    {
-                        return false;
-                    }
-                }
-            }
+        if (other.Size != Size) return false;
+
+        for (int i = 0; i < Size.x * Size.y * Size.z; i++) {
+            if (kernel[i] != other.kernel[i])
+                return false;
         }
 
         return true;
