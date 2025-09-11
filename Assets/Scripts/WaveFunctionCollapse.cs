@@ -55,7 +55,7 @@ public class WaveFunctionCollapse : MonoBehaviour {
         tilemap.SetTile(new Vector3Int(0, 0, 0), startingTile);
         m_waveTable[0, 0, 0].Clear();
         m_waveTable[0, 0, 0].Add(startingTile);
-        UpdateWavetableFrom(new Vector3Int(0, 0, 0));
+        UpdateWavetableAround(new Vector3Int(0, 0, 0));
     }
 
     private void ClearAir() {
@@ -123,6 +123,11 @@ public class WaveFunctionCollapse : MonoBehaviour {
                         Vector3Int offset = new(i, j, k);
                         Vector3Int target = offset + position;
 
+                        if (target.x < 0 || target.x >= size.x ||
+                            target.y < 0 || target.y >= size.y ||
+                            target.z < 0 || target.z >= size.z)
+                            continue;
+
                         List<TileBase> impossibleTiles = new List<TileBase>();
                         foreach (TileBase tile in m_waveTable[target.x, target.y, target.z]) {
                             if (!validTiles[i,j,k].Contains(tile))
@@ -145,9 +150,9 @@ public class WaveFunctionCollapse : MonoBehaviour {
                     Vector3Int offset = new(i, j, k);
                     Vector3Int target = offset + position;
 
-                    if (target.x < 0 && target.x > size.x &&
-                        target.y < 0 && target.y > size.y &&
-                        target.z < 0 && target.z > size.z)
+                    if (target.x < 0 || target.x >= size.x ||
+                        target.y < 0 || target.y >= size.y ||
+                        target.z < 0 || target.z >= size.z)
                         continue;
 
                     TileBase ruleTile = kernel.getTileAt(offset);
@@ -161,9 +166,9 @@ public class WaveFunctionCollapse : MonoBehaviour {
     }
 
     private void UnionKernel(KernelRule kernel, ref List<TileBase>[,,] tiles) {
-        for (int k = 0; k < 3; k++) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 3; i++) {
+        for (int k = 0; k < kernel.Size.x; k++) {
+            for (int j = 0; j < kernel.Size.y; j++) {
+                for (int i = 0; i < kernel.Size.z; i++) {
                     TileBase kernelTile = kernel.getTileAt(new Vector3Int(i, j, k));
 
                     if (!tiles[i, j, k].Contains(kernelTile))
